@@ -13,8 +13,8 @@ class Habit(models.Model):
     pleasant = models.BooleanField(default=False, verbose_name='признак приятной привычки')
     related_habit = models.ForeignKey('Habit', on_delete=models.SET_NULL,
                                       **NULLABLE, verbose_name='связанная привычка')
-    periodicity = models.PositiveIntegerField(default=1, verbose_name='периодичность(в днях)')
     reward = models.CharField(max_length=150, **NULLABLE, verbose_name='вознаграждение')
+    periodicity = models.PositiveIntegerField(default=1, verbose_name='периодичность(в днях)')
     complete_time = models.PositiveIntegerField(verbose_name='время выполнения')
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
 
@@ -24,3 +24,22 @@ class Habit(models.Model):
     class Meta:
         verbose_name = 'Привычка'
         verbose_name_plural = 'Привычки'
+
+    constraints = [
+        models.CheckConstraint(
+            check=models.Q(
+                pleasant=False,
+                related_habit__isnull=True,
+                reward__isnull=False
+            ) | models.Q(
+                pleasant=False,
+                related_habit__isnull=False,
+                reward__isnull=True
+            ) | models.Q(
+                pleasant=True,
+                related_habit__isnull=True,
+                reward__isnull=True
+            ),
+            name='either_related_habit_or_reward_or_pleasant_habit'
+        )
+    ]
