@@ -12,7 +12,8 @@ class User(AbstractUser):
     city = models.CharField(max_length=35, verbose_name='город', **NULLABLE)
     avatar = models.ImageField(upload_to='users/',
                                verbose_name='аватар', **NULLABLE)
-    telegram_id = models.BigIntegerField(default=0, verbose_name='телеграмм id')
+    telegram_id = models.BigIntegerField(default=0,
+                                         verbose_name='телеграмм id')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

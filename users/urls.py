@@ -1,4 +1,5 @@
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
 from users.apps import UsersConfig
 from django.urls import path
 from users.views import UserRegisterAPIView

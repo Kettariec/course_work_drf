@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_celery_beat',
-
+    'drf_yasg',
     'users',
     'tracker',
 ]
@@ -165,25 +165,15 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = False
 
 # Настройки для Celery
-
-# URL-адрес брокера сообщений
-CELERY_BROKER_URL = os.getenv('REDIS') # Например, Redis, который по умолчанию работает на порту 6379
-
-# URL-адрес брокера результатов, также Redis
+CELERY_BROKER_URL = os.getenv('REDIS')
 CELERY_RESULT_BACKEND = os.getenv('REDIS')
-
-# Часовой пояс для работы Celery
 CELERY_TIMEZONE = "Europe/Moscow"
-
-# Флаг отслеживания выполнения задач
 CELERY_TASK_TRACK_STARTED = True
-
-# Максимальное время на выполнение задачи
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'tracker.tasks.reminder_habits',  # Путь к задаче
-        'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
+        'task': 'tracker.tasks.reminder_habits',
+        'schedule': timedelta(minutes=1),
     },
 }

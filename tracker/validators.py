@@ -10,4 +10,5 @@ class PleasantHabitValidator:
         field_value = dict(value).get(self.field)
         if field_value:
             if field_value.pleasant is False:
-                raise ValidationError('Связанной может быть только приятная привычка!')
+                raise ValidationError('Связанной может '
+                                      'быть только приятная привычка!')

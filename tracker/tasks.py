@@ -15,10 +15,12 @@ def reminder_habits():
 
     for habit in habits:
         chat_id = habit.user.telegram_id
-        message = f'В {habit.time.strftime("%H:%M")} сделать {habit.action} в {habit.place}'
+        message = (f'В {habit.time.strftime("%H:%M")} '
+                   f'сделать {habit.action} в {habit.place}')
 
         try:
-            response = bot.send_message(chat_id=chat_id, text=message)
+            response = bot.send_message(chat_id=chat_id,
+                                        text=message)
 
             for i in range(7):
                 day = i + 1
