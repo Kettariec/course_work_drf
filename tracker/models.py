@@ -23,7 +23,7 @@ class Habit(models.Model):
                                                                      MaxValueValidator(7)],
                                               verbose_name='периодичность(в днях)')
     complete_time = models.PositiveIntegerField(validators=[MaxValueValidator(120)],
-                                                verbose_name='время выполнения')
+                                                verbose_name='время выполнения(в секундах)')
     is_public = models.BooleanField(default=False,
                                     verbose_name='признак публичности')
 
