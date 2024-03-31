@@ -7,7 +7,8 @@ from rest_framework import status
 class HabitTestCase(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(email='test@test.org', password='qwertyui')
+        self.user = User.objects.create(email='test@test.org',
+                                        password='qwertyui')
         self.client.force_authenticate(user=self.user)
 
         self.habit = Habit.objects.create(
@@ -39,8 +40,10 @@ class HabitTestCase(APITestCase):
         )
         self.assertEqual(
             response.json(),
-            {'id': 2, 'user': self.user.pk, 'place': 'test', 'time': '2024-03-30T12:00:00+03:00',
-             'action': 'test', 'pleasant': False, 'related_habit': None, 'periodicity': 1,
+            {'id': 2, 'user': self.user.pk,
+             'place': 'test', 'time': '2024-03-30T12:00:00+03:00',
+             'action': 'test', 'pleasant': False,
+             'related_habit': None, 'periodicity': 1,
              'reward': 'test', 'complete_time': 2, 'is_public': False}
         )
 
