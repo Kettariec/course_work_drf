@@ -9,9 +9,10 @@ MY_ID = os.getenv('TELEGRAM_MY_ID')
 class Command(BaseCommand):
     def handle(self, *args, **options):
         bot = telebot.TeleBot(API_KEY)
-        message = f'Тестовое сообщение'
+        message = 'Тестовое сообщение'
 
         try:
-            response = bot.send_message(chat_id=MY_ID, text=message)
+            response = bot.send_message(chat_id=MY_ID,
+                                        text=message)
         except Exception as e:
             print(e)

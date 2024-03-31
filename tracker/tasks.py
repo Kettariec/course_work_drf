@@ -1,7 +1,7 @@
 import telebot
 import os
 from celery import shared_task
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from tracker.models import Habit
 
 API_KEY = os.getenv('TELEGRAM_TOKEN')
@@ -9,7 +9,7 @@ API_KEY = os.getenv('TELEGRAM_TOKEN')
 
 @shared_task
 def reminder_habits():
-    now = datetime.now()
+    now = datetime.now(tz=timezone.utc)
     bot = telebot.TeleBot(API_KEY)
     habits = Habit.objects.filter(time__lte=now)
 
@@ -24,7 +24,7 @@ def reminder_habits():
 
             for i in range(7):
                 day = i + 1
-                if habit.periodisity == day:
+                if habit.periodiсity == day:
                     habit.time += timedelta(days=day)
                     break
 
