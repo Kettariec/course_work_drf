@@ -1,5 +1,6 @@
 from django.db import models
 from config import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -18,9 +19,11 @@ class Habit(models.Model):
                                       **NULLABLE, verbose_name='связанная привычка')
     reward = models.CharField(max_length=150, **NULLABLE,
                               verbose_name='вознаграждение')
-    periodicity = models.PositiveIntegerField(default=1,
+    periodicity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1),
+                                                                     MaxValueValidator(7)],
                                               verbose_name='периодичность(в днях)')
-    complete_time = models.PositiveIntegerField(verbose_name='время выполнения')
+    complete_time = models.PositiveIntegerField(validators=[MaxValueValidator(120)],
+                                                verbose_name='время выполнения')
     is_public = models.BooleanField(default=False,
                                     verbose_name='признак публичности')
 
