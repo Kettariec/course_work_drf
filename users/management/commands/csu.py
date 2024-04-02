@@ -20,4 +20,3 @@ class Command(BaseCommand):
 
         user.set_password(os.getenv('SUPER_USER_PASS'))
         user.save()
-        

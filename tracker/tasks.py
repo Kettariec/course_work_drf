@@ -21,12 +21,8 @@ def reminder_habits():
         try:
             response = bot.send_message(chat_id=chat_id,
                                         text=message)
-
-            for i in range(7):
-                day = i + 1
-                if habit.periodiсity == day:
-                    habit.time += timedelta(days=day)
-                    break
+            habit.time += timedelta(days=habit.periodicity)
+            break
 
         except Exception as e:
             print(e)

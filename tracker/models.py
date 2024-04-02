@@ -16,11 +16,13 @@ class Habit(models.Model):
     pleasant = models.BooleanField(default=False,
                                    verbose_name='признак приятной привычки')
     related_habit = models.ForeignKey('Habit', on_delete=models.SET_NULL,
-                                      **NULLABLE, verbose_name='связанная привычка')
+                                      **NULLABLE,
+                                      verbose_name='связанная привычка')
     reward = models.CharField(max_length=150, **NULLABLE,
                               verbose_name='вознаграждение')
-    periodicity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1),
-                                                                     MaxValueValidator(7)],
+    periodicity = models.PositiveIntegerField(default=1,
+                                              validators=[MinValueValidator(1),
+                                                          MaxValueValidator(7)],
                                               verbose_name='периодичность(в днях)')
     complete_time = models.PositiveIntegerField(validators=[MaxValueValidator(120)],
                                                 verbose_name='время выполнения(в секундах)')
@@ -28,27 +30,8 @@ class Habit(models.Model):
                                     verbose_name='признак публичности')
 
     def __str__(self):
-        return f'{self.action}'
+        return f'{self.user} будет {self.action} в {self.time} в {self.place}'
 
     class Meta:
         verbose_name = 'Привычка'
         verbose_name_plural = 'Привычки'
-
-    constraints = [
-        models.CheckConstraint(
-            check=models.Q(
-                pleasant=False,
-                related_habit__isnull=True,
-                reward__isnull=False
-            ) | models.Q(
-                pleasant=False,
-                related_habit__isnull=False,
-                reward__isnull=True
-            ) | models.Q(
-                pleasant=True,
-                related_habit__isnull=True,
-                reward__isnull=True
-            ),
-            name='either_related_habit_or_reward_or_pleasant_habit'
-        )
-    ]
