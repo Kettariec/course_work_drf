@@ -1,15 +1,18 @@
 import telebot
 import os
 from celery import shared_task
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from tracker.models import Habit
+import pytz
+from django.conf import settings
 
 API_KEY = os.getenv('TELEGRAM_TOKEN')
 
 
 @shared_task
 def reminder_habits():
-    now = datetime.now(tz=timezone.utc)
+    zone = pytz.timezone(settings.TIME_ZONE)
+    now = datetime.now(zone)
     bot = telebot.TeleBot(API_KEY)
     habits = Habit.objects.filter(time__lte=now)
 
