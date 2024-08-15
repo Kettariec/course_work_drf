@@ -1,8 +1,5 @@
 
-<h2 align="center">Курсовая работа Django DRF</h2>
-
-Приложение трекер полезных привычек.
-
+<h2 align="center">Приложение трекер полезных привычек.</h2>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -73,5 +70,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 kettariec@gmail.com
 
 https://github.com/Kettariec/course_work_drf/
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
