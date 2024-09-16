@@ -11,7 +11,7 @@
 Создать образы и контейнеры DOCKER с помощью команд: "docker-compose build" и "docker-compose up".
 
 
-## Структура проекта
+## Project structure
 
 config/
 
@@ -57,11 +57,6 @@ env.example - пример заполнения переменных окруж�
 manage.py - точка входа веб-приложения
 
 requirements.txt - список зависимостей для проекта.
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
