@@ -7,7 +7,7 @@
 Перед запуском web-приложения создайте базу данных, создайте и примените миграции, установите необходимые пакеты из файла requirements.txt и заполните файл .env по образцу .env.example. Используйте команду "python manage.py csu" для создания суперпользователя. Для запуска используйте команду "python manage.py runserver" либо через конфигурационные настройки PyCharm.
 
 
-### Docker 
+## Docker 
 Создать образы и контейнеры DOCKER с помощью команд: "docker-compose build" и "docker-compose up".
 
 
@@ -69,4 +69,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 kettariec@gmail.com
 
-https://github.com/Kettariec/course_work_drf/
+https://github.com/Kettariec/habit_tracker_drf
